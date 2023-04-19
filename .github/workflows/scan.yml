@@ -11,9 +11,7 @@ jobs:
     - name: Checkout 
     - uses: actions/checkout@v2
     - name: Perform Scan
-    - uses: AppThreat/sast-scan-action@master
-      with:
-    type: " "
+    - uses: AppThreat/sast-scan-action@master      
     - name: Upload repors 
     - uses: actions/upload-artifact@v1
       with:
