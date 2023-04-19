@@ -27,7 +27,7 @@ jobs:
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: reports
-       
+  
   # DAST:
   #   runs-on: ubuntu-latest
   #   name: zap-web
