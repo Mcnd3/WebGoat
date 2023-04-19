@@ -19,7 +19,8 @@ jobs:
     - uses: ShiftLeftSecurity/scan-action@master
       with:
     type: " "
-    - uses: actions/upload-artifact@v2
+    name: report
+      uses: actions/upload-artifact@v2
       with:
         name: reports
         path: reports
