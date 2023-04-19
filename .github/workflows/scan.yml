@@ -18,10 +18,7 @@ jobs:
     - name: Perform Scan
     - uses: ShiftLeftSecurity/scan-action@master
       with:
-    type: "credscan,python"
-  env:
-    WORKSPACE: https://github.com/${{ github.repository }}/blob/${{ github.sha }}
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    type: " "
     - uses: actions/upload-artifact@v2
       with:
         name: reports
