@@ -17,6 +17,7 @@ jobs:
       uses: ShiftLeftSecurity/scan-action@master
       env:
         VDB_HOME: ${{ github.workspace }}/db
+        SCAN_ANNOTATE_PR: 'true'
         WORKSPACE: " "
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
