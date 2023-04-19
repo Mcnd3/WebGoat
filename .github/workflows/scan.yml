@@ -18,7 +18,7 @@ jobs:
       env:
         VDB_HOME: ${{ github.workspace }}/db
         WORKSPACE: " "
-        GITHUB_TOKEN: ${{ secrets.ACESS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         output: reports
     - name: Upload report
