@@ -1,0 +1,43 @@
+name: Sast scan
+
+# This section configures the trigger for the workflow. Feel free to customize depending on your convention
+on:
+  push:
+
+jobs:
+  SAST-SCA:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache multiple paths
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ github.workspace }}/db
+        key: ${{ runner.os }}-${{ hashFiles('requirements*.txt') }}
+    - name: Perform Scan
+      uses: ShiftLeftSecurity/scan-action@master
+      env:
+        VDB_HOME: ${{ github.workspace }}/db
+        WORKSPACE: " "
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        output: reports
+    - name: Upload report
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: reports
+       
+  # DAST:
+  #   runs-on: ubuntu-latest
+  #   name: zap-web
+  #   needs: SAST-SCA
+  #   steps:
+  #     - name: DAST(Zap)
+  #       uses: zaproxy/action-full-scan@v0.4.0
+  #       with:
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         docker_name: 'owasp/zap2docker-stable'
+  #         target: 'http://zero.webappsecurity.com/'
+  #         rules_file_name: '.zap/rules.tsv'
+  #         cmd_options: 
